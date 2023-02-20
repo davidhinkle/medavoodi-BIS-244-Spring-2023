@@ -8,22 +8,22 @@ library(socviz)
 ## 3.3 Mappings Link Data to Things You See
 
 # Reminder of what gapminder looks like
-gapminder
+gapminder <- gapminder
 
 p <- # Defining the landscape of our graph 
 p <- ggplot(data = gapminder)
 p
 
-# Giving our landscape more structure
+# Giving our landscape more structure; hypothesis: if a country is rich (x), life expectancy may be more (y)
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
 p
 
 ## 3.4 Build Your Plots Layer by Layer
-p + geom_point() 
+p + geom_point() #scatterplot
 
-gapdata <- as.data.frame(gapminder)
+#gapdata <- as.data.frame(gapminder)
 
 # Life expectancy vs GDP, using a smoother.
 
@@ -34,7 +34,7 @@ p + geom_smooth()
 
 # Add back individual dots as well
 
-p   + geom_point()+ geom_smooth()
+p   + geom_point()+ geom_smooth() #If want to see both at the same time, need to add both [layered]
 
 
 # ================= Solve part a of Hands-on Week 4
@@ -52,7 +52,7 @@ p + geom_point() + geom_smooth(method = "lm")
 p + geom_point() + geom_smooth(method = "gam") 
 p + geom_point() + geom_smooth() 
 
-# Converting X scale to logarithmic base 10 scale
+# Converting X scale to logarithmic base 10 scale; makes range smaller
 
 p + geom_point() + geom_smooth(method = "lm") + scale_x_log10()
 
@@ -109,8 +109,8 @@ p + geom_point(color = "purple") +
 
 # Example: Setting opacity for points and color for line
 # “alpha” is an aesthetic property that points
-# Alpha refers to the opacity of a geom. Values of alpha range from 0 to 1.
-# With lower values corresponding to more transparent colors. 
+# Alpha refers to the opacity of a geom. 
+#Values of alpha range from 0 to 1, lower values corresponding to more transparent colors. 
 
 p + geom_point(alpha = 0.3) +
   geom_smooth(color = "orange", se = FALSE, size = 2, method = "lm") +
